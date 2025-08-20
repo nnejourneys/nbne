@@ -1,0 +1,22 @@
+{
+  "contact": [
+    {
+      "title": "phone1",
+      "icon": "ph:device-mobile",
+      "name": "+91 9150 033 886",
+      "link": "tel:+919150033886"
+    }, 
+    {
+      "title": "email",
+      "icon": "ph:envelope",
+      "name": "nnejourneys@gmail.com",
+      "link": "mailto:nnejourneys@gmail.com"
+    },
+    {
+      "title": "address",
+      "icon": "ph:map-trifold",
+      "name": "Mansiri House, Deorigaon, Tezpur, Assam, 784001",
+      "link": "Mansiri House, Deorigaon, Tezpur, Assam, 784001"
+    }
+  ]
+}

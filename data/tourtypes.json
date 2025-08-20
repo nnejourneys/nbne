@@ -1,0 +1,28 @@
+{
+  "tourtypetitle": "Active, Interactive and Authentic Tours in Northeast India",
+  "btnlink": "/tours",
+  "btntext": "OUR TOURS",  
+  "tourtype": [
+    {
+      "title": "ACTIVE ADVENTURE",
+      "img": "/tour-type/active-adventure-tours-northeast-india.png",
+      "text": "Our Active Adventure tours in northeast India are for the avid as well as novice, be it relaxed or a real test of determination and endurance.",
+      "url": "/tours?category=active&tag=",
+      "btnText": "Active Tours"
+    },
+    {
+      "title": "NATURE & CULTURE",
+      "img": "/tour-type/culture-nature-tours-northeast-india.png",
+      "text": "These 8 states lying in the Indo-Burmese and the Himalayan Bio-diversity hotspots are also home to over 150 unique and distinct ethinic groups.",
+      "url": "/tours?category=culture&tag=",
+      "btnText": "Culture Tours"
+    },
+    {
+      "title": "LAIDBACK LEISURE",
+      "img": "/tour-type/leisure-tours-northeast-india.png",
+      "text": "Holidays that take you away from the maddening crowds, kick off your shoes, destress and enjoy the serenity while we take care of the rest.",
+      "url": "/tours?category=leisure&tag=",
+      "btnText": "Leisure Tours"    
+    }
+  ]
+}

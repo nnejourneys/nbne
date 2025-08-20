@@ -1,0 +1,42 @@
+{
+  "hero":{
+    "slides": [
+      {
+        "title": "North by Northeast Journeys",
+        "subtitle": "Discover the Other India",
+        "description": "Active, Interactive, Authentic Holidays in Northeast India",
+        "animation": "fadeInDown",
+        "delay": ".4",
+        "image": "/hero-slider/walking-holidays-northeast-india.jpg",
+        "load": false
+      }, 
+      {
+        "title": "North by Northeast Journeys",
+        "subtitle": "Discover the Other India",
+        "description": "Active, Interactive, Authentic Holidays in Northeast India",
+        "animation": "fadeInDown",
+        "delay": ".4",
+        "image": "/hero-slider/cycling-trips-northeast-india.jpg",
+        "load": true
+      }, 
+      {
+        "title": "North by Northeast Journeys",
+        "subtitle": "Discover the Other India",
+        "description": "Active, Interactive, Authentic Holidays in Northeast India",
+        "animation": "fadeInDown",
+        "delay": ".4",
+        "image": "/hero-slider/motorcycle-trips-north-east-india.jpg",
+        "load": false
+      }, 
+      {
+        "title": "North by Northeast Journeys",
+        "subtitle": "Discover the Other India",
+        "description": "Active, Interactive, Authentic Holidays in Northeast India",
+        "animation": "fadeInDown",
+        "delay": ".4",
+        "image": "/hero-slider/nature-culture-tours-in-northeast-india-ny-north-by-north-east-journeys.jpg",
+        "load": false
+      }
+    ]
+  }
+  }

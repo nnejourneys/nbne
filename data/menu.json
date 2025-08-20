@@ -1,0 +1,132 @@
+{
+  "menu": {
+    "mainmenu": [
+      {
+        "title": "Home",
+        "href": "/",
+        "weight": 1,
+        "id": 1
+      },
+      {
+        "title": "Tours",
+        "href": "/tours",
+        "weight": 2,
+        "id": 2,
+        "children": [
+          {
+            "title": "All Tours",
+            "href": "/tours",
+            "order": 1,
+            "id": 1
+          },
+          {
+            "title": "Departures",
+            "href": "/tours/departures",
+            "order": 2,
+            "id": 2
+          }
+        ]
+      },
+      {
+        "title": "About",
+        "href": "/aboutus",
+        "weight": 3,
+        "id": 3,
+        "children": [
+          {
+            "title": "About Us",
+            "href": "/aboutus",
+            "order": 1,
+            "id": 1
+          },
+          {
+            "title": "Team",
+            "href": "/aboutus/team",
+            "order": 2,
+            "id": 2
+          },
+          {
+            "title": "Insights",
+            "href": "/aboutus/insights",
+            "order": 3,
+            "id": 3
+          }
+        ]
+      },
+      {
+        "title": "Blog",
+        "href": "/posts",
+        "weight": 4,
+        "id": 4
+      },
+      {
+        "title": "Contact",
+        "href": "/contact",
+        "weight": 5,
+        "id": 5
+      }
+    ],
+    "footer": [
+      {
+        "title": "Important Links",
+        "items": [
+          {
+            "title": "Responsible Tourism",
+            "href": "/aboutus",
+            "weight": 1
+          },
+          {
+            "title": "Insights",
+            "href": "/aboutus/insights",
+            "weight": 2
+          },
+          {
+            "title": "Terms and Conditions",
+            "href": "/terms-and-conditions",
+            "weight": 3
+          },
+          {
+            "title": "Privacy Policy",
+            "href": "/privacy-policy",
+            "weight": 4
+          },
+          {
+            "title": "Booking & Cancellation Policy",
+            "href": "/booking-and-cancellation-policy",
+            "weight": 5
+          }
+        ]
+      },
+      {
+        "title": "Quick Links",
+        "items": [
+          {
+            "title": "Home",
+            "href": "/",
+            "weight": 1
+          },
+          {
+            "title": "Tours",
+            "href": "/tours",
+            "weight": 2
+          },
+          {
+            "title": "About",
+            "href": "/about-us",
+            "weight": 3
+          },
+          {
+            "title": "Blog",
+            "href": "/posts",
+            "weight": 4
+          },
+          {
+            "title": "Contact",
+            "href": "/contact",
+            "weight": 5
+          }
+        ]
+      }
+    ]
+  }
+}

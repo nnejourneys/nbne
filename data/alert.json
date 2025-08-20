@@ -1,0 +1,35 @@
+{
+  "contact": [
+    {
+      "title": "email",
+      "icon": "ph:envelope",
+      "name": "nnejourneys@gmail.com",
+      "link": "mailto:nnejourneys@gmail.com",
+      "class": "list-inline-item mx-2 my-1"
+    },
+    {
+      "title": "phone1",
+      "icon": "ph:device-mobile",
+      "name": "+91 9150 033 886", 
+      "link": "tel:+919150033886",
+      "class": "list-inline-item mx-2 my-1"
+    }
+   ],
+  "social": [
+    {
+      "name": "facebook",
+      "icons": "bi:facebook",
+      "link": "https://www.facebook.com/northbynortheastjourneys"
+    },
+    { 
+      "name": "instagram",
+      "icons": "bi:instagram",
+      "link": "https://www.instagram.com/north_by_northeast/"
+    },
+    {
+      "name": "instagram",
+      "icons": "bi:youtube",
+      "link": "https://www.youtube.com/channel/UCoOuUJl2OclF3xM2nCKAlSA/videos"
+    }
+  ]
+}

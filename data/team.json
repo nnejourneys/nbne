@@ -1,0 +1,160 @@
+{
+  "title": "Your Companions",
+  "text": "Personnel wise we are collaborative group of some really nice and strong people with their own sets of expertise. These tours are made of various elements chipped in by people from across the region. From logistics, local know-how, activity expertise, camping and cooking to just good company , we have some one who is one of the best in the line. Our intention is to actively encourage and help our team and others by collaborating and working for each other. One thing for sure, with these good folk around you can rest assured that you will be taken care of, kept well fed, given a good local prospective and kept safe while always respecting and being considerate towards the local folk and the environment.",
+  "teammembers": [
+    {
+      "title": "Bora Da",
+      "image": "/team/Bora.jpg",
+      "weight": "9",
+      "information": [
+        {
+          "label": "Experience Of",
+          "icon": "fluent:flag-24-regular",
+          "data": "30+ Years"
+        },
+        {
+          "label": "From",
+          "icon": "fluent:location-24-regular",
+          "data": "N Lakhimpur, Assam"
+        }
+      ]
+    },
+    {
+      "title": "Ahonda Menjo",
+      "image": "/team/Ahonda.jpg",
+      "weight": "7",
+      "information": [
+        {
+          "label": "Experience Of",
+          "icon": "fluent:flag-24-regular",
+          "data": "4 Years"
+        },
+        {
+          "label": "From",
+          "icon": "fluent:location-24-regular",
+          "data": "Roing, Arunachal"
+        }
+      ]
+    },
+    {
+      "title": "Iho Mitapo",
+      "image": "/team/Iho.jpg",
+      "weight": "4",
+      "information": [
+        {
+          "label": "Experience Of",
+          "icon": "fluent:flag-24-regular",
+          "data": "5+ Years"
+        },
+        {
+          "label": "From",
+          "icon": "fluent:location-24-regular",
+          "data": "Roing, Arunachal"
+        }
+      ]
+    },
+    {
+      "title": "Jaantu Gogoi",
+      "image": "/team/jaantu.jpg",
+      "weight": "8",
+      "information": [
+        {
+          "label": "Experience Of",
+          "icon": "fluent:flag-24-regular",
+          "data": "20+ Years"
+        },
+        {
+          "label": "From",
+          "icon": "fluent:location-24-regular",
+          "data": "Dibrugarh, Assam"
+        }
+      ]
+    },
+    {
+      "title": "Joho Tayu",
+      "image": "/team/Joho.jpg",
+      "weight": "5",
+      "information": [
+        {
+          "label": "Experience Of",
+          "icon": "fluent:flag-24-regular",
+          "data": "5+ Years"
+        },
+
+        {
+          "label": "From",
+          "icon": "fluent:location-24-regular",
+          "data": "Anini, Arunachal"
+        }
+      ]
+    },
+    {
+      "title": "Manjit Saikia",
+      "image": "/team/Manjit.jpg",
+      "weight": "3",
+      "information": [
+        {
+          "label": "Experience Of",
+          "icon": "fluent:flag-24-regular",
+          "data": "5+ Years"
+        },
+        {
+          "label": "From",
+          "icon": "fluent:location-24-regular",
+          "data": "Tezpur, Assam"
+        }
+      ]
+    },
+    {
+      "title": "Nongrum KD",
+      "image": "/team/KD.jpg",
+      "weight": "6",
+      "information": [
+        {
+          "label": "Experience Of",
+          "icon": "fluent:flag-24-regular",
+          "data": "3+ Years"
+        },
+        {
+          "label": "From",
+          "icon": "fluent:location-24-regular",
+          "data": "Shillong, Meghalaya"
+        }
+      ]
+    },
+    {
+      "title": "Roheen Browne E",
+      "image": "/team/Roheen.jpg",
+      "weight": "1",
+      "information": [
+        {
+          "label": "Experience Of",
+          "icon": "fluent:flag-24-regular",
+          "data": "16+ Years"
+        },
+        {
+          "label": "From",
+          "icon": "fluent:location-24-regular",
+          "data": "Tezpur, Assam"
+        }
+      ]
+    },
+    {
+      "title": "Ezhil Vasanthan",
+      "image": "/team/vasanth.jpg",
+      "weight": "2",
+      "information": [
+        {
+          "label": "Experience Of",
+          "icon": "fluent:flag-24-regular",
+          "data": "12+ Years"
+        },
+        {
+          "label": "From",
+          "icon": "fluent:location-24-regular",
+          "data": "Bangalore"
+        }
+      ]
+    }
+  ]
+}
