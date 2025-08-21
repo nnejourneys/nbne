@@ -147,12 +147,6 @@ export const organizationSchema = {
       }
     }
   ],
-  // Additional properties for international appeal
-  audience: {
-    "@type": "Audience",
-    audienceType: "International travelers interested in Northeast India",
-    geographicArea: "Worldwide"
-  },
   knowsAbout: [
     "Northeast India",
     "Adventure Tourism",
