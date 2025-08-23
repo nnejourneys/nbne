@@ -18,7 +18,7 @@ export default function AboutAlt() {
     >
       <div className="">
         <VideoPlayer
-          src="https://pub-3d943afeed9643318d31712e02ebf613.r2.dev/North-by-Northeast-tours-Northeast-India.mp4"
+          src="https://pub-3d943afeed9643318d31712e02ebf613.r2.dev/Active-Holidays-Northeast-India.mp4"
           poster="https://pub-3d943afeed9643318d31712e02ebf613.r2.dev/videoposter.jpg"
           className="z-0 object-cover object-center"
         />
@@ -52,3 +52,4 @@ export default function AboutAlt() {
     </Container>
   );
 }
+
