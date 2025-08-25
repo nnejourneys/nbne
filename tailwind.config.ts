@@ -7,6 +7,11 @@ export default {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    'duration-700',
+    'duration-1000',
+    'ease-container-animation',
+  ],
   theme: {
     extend: {
       fontFamily: {
