@@ -1,32 +1,44 @@
 "use client"
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 export default function StaggeredList({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const container = {
-    hidden: { opacity: 1, scale: 0.5 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        delayChildren: 0.5,
-        staggerChildren: 0.3,
+  const [isVisible, setIsVisible] = useState(false);
+  const listRef = useRef<HTMLUListElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
       },
-    },
-  };
+      { threshold: 0.1 }
+    );
+
+    if (listRef.current) {
+      observer.observe(listRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
-      <motion.ul
-        variants={container}
-        initial="hidden"
-        animate="visible"
-        className="grid md:grid-cols-2 gap-4"
+      <ul
+        ref={listRef}
+        className={`grid md:grid-cols-2 gap-4 transition-all duration-1000 delay-500 ease-in-out ${
+          isVisible 
+            ? 'opacity-100 scale-100' 
+            : 'opacity-100 scale-50'
+        }`}
       >
         {children}
-      </motion.ul>
+      </ul>
     </>
   );
 }

@@ -1,12 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
-// import Image from "next/image";
+import React, { useEffect, useState } from "react"; 
 import Navbar from "./navbar";
 import HamburgerMenu from "./hamburger-menu";
 import ContactBanner from "./contact-banner";
 import Link from "next/link";
 import { SITE_TITLE } from "@/lib/constants";
-import R2Image from "@/components/styledcomps/R2Image";
+import Image from "next/image";
 
 export default function Menu() {
   const [yValue, setYValue] = useState(0);
@@ -43,10 +42,9 @@ export default function Menu() {
 
         <div className="flex justify-between py-1 px-1 md:px-3 lg:px-5 xl:px-10 gap-x-5 items-center">
           <Link href="/" title={SITE_TITLE}>
-            <R2Image
-              src="/logo.svg"
-              alt={SITE_TITLE}
-              // title={SITE_TITLE}
+            <Image
+              src="/images/logo.svg"
+              alt={SITE_TITLE} 
               className="w-20 h-auto"
               width={300}
               height={205}

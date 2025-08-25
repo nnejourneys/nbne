@@ -38,6 +38,8 @@ export default function HeroMain() {
                   alt={item.title} 
                   fill
                   priority={item.load}
+                  quality={95}
+                  sizes="100vw"
                 />
                 <div className="absolute top-0 left-0 w-full h-[60vh] sm:h-[100vh] bg-black/20" />
                 <div className="absolute top-[40%] left-[10%]">
@@ -61,9 +63,9 @@ export default function HeroMain() {
                   >
                     <h3>{item.description}</h3>
                   </Heading>
-                  <Button size="lg">
-                    <Link href="/tours">Explore all tours</Link>
-                  </Button>
+                  <Link href="/tours">
+                    <Button size="lg">Explore all tours</Button>
+                  </Link>
                 </div>
               </div>
             </CarouselItem>

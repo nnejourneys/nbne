@@ -27,7 +27,7 @@ export default function R2Image({
   height = 800,
   className,
   priority = false,
-  quality = 75,
+  quality = 85,
   fill = false,
   sizes,
   style,
@@ -35,12 +35,20 @@ export default function R2Image({
   enableBlur = true,
   ...props
 }: R2ImageProps) {
-  const imageUrl = `${process.env.NEXT_PUBLIC_R2_BUCKET_URL}/${src.replace(/^\//, '')}`;
+  // Ensure consistent URL generation on server and client
+  const imageUrl = React.useMemo(() => {
+    if (src.startsWith('http')) return src;
+    const cleanSrc = src.replace(/^\//, '');
+    return `${process.env.NEXT_PUBLIC_R2_BUCKET_URL}/${cleanSrc}`;
+  }, [src]);
   
   // Use provided blur data URL or default
   const finalBlurDataURL = enableBlur 
     ? blurDataURL || DEFAULT_BLUR_DATA_URL
     : undefined;
+    
+  // Ensure consistent sizes attribute
+  const defaultSizes = sizes || "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw";
 
   if (fill) {
     return (
@@ -51,7 +59,7 @@ export default function R2Image({
         className={cn(className)}
         priority={priority}
         quality={quality}
-        sizes={sizes || "100vw"}
+        sizes={defaultSizes}
         style={style}
         placeholder={enableBlur ? "blur" : "empty"}
         blurDataURL={finalBlurDataURL}
@@ -69,7 +77,7 @@ export default function R2Image({
       className={cn(className)}
       priority={priority}
       quality={quality}
-      sizes={sizes}
+      sizes={defaultSizes}
       style={style}
       placeholder={enableBlur ? "blur" : "empty"}
       blurDataURL={finalBlurDataURL}

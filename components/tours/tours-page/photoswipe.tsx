@@ -1,8 +1,16 @@
 "use client"
 import React, { JSX, useEffect } from "react";
-import PhotoSwipeLightbox from "photoswipe/lightbox";
-import "photoswipe/style.css";
 import SimR2Image from "./SimR2Image";
+
+// Dynamically load PhotoSwipe CSS only when needed
+const loadPhotoSwipeStyles = () => {
+  if (typeof window !== 'undefined' && !document.querySelector('link[href*="photoswipe"]')) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://unpkg.com/photoswipe@5.4.4/dist/photoswipe.css';
+    document.head.appendChild(link);
+  }
+};
 
 interface GalleryImage {
   thumbnailURL: string;
@@ -19,6 +27,7 @@ interface SimpleGalleryProps {
 }
 
 export default function SwipeGallery({ galleryID, images }: SimpleGalleryProps): JSX.Element | null {
+  
   // Safely convert to array
   const galleryImages = React.useMemo(() => {
     if (Array.isArray(images)) return images;
@@ -36,21 +45,37 @@ export default function SwipeGallery({ galleryID, images }: SimpleGalleryProps):
     });
   }, [galleryID, images]);
  
-  // Initialize PhotoSwipe
+  // Initialize PhotoSwipe with dynamic import
   useEffect(() => {
     // Don't initialize if no images
     if (galleryImages.length === 0) return;
-   
-    const lightbox = new PhotoSwipeLightbox({
-      gallery: "#" + galleryID,
-      children: "a",
-      pswpModule: () => import("photoswipe"),
-    });
-   
-    lightbox.init();
+    
+    let lightbox: unknown = null;
+    
+    const initPhotoSwipe = async () => {
+      try {
+        // Load CSS and PhotoSwipe only when needed
+        loadPhotoSwipeStyles();
+        const PhotoSwipeLightbox = (await import("photoswipe/lightbox")).default;
+        
+        lightbox = new PhotoSwipeLightbox({
+          gallery: "#" + galleryID,
+          children: "a",
+          pswpModule: () => import("photoswipe"),
+        });
+       
+        (lightbox as { init: () => void }).init();
+      } catch (error) {
+        console.error('Failed to load PhotoSwipe:', error);
+      }
+    };
+    
+    initPhotoSwipe();
    
     return () => {
-      lightbox.destroy();
+      if (lightbox) {
+        (lightbox as { destroy: () => void }).destroy();
+      }
     };
   }, [galleryID, galleryImages.length]);
 

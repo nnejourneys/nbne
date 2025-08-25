@@ -1,22 +1,41 @@
 "use client"
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 export default function StaggeredListItem({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const staggeritem = {
-    hidden: { opacity: 0.1 },
-    visible: {
-      opacity: 1,
-    },
-  };
+  const [isVisible, setIsVisible] = useState(false);
+  const itemRef = useRef<HTMLLIElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (itemRef.current) {
+      observer.observe(itemRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
-      <motion.li variants={staggeritem} className="staggeritem flex">
+      <li 
+        ref={itemRef}
+        className={`staggeritem flex transition-opacity duration-1000 ease-in-out ${
+          isVisible ? 'opacity-100' : 'opacity-10'
+        }`}
+      >
         {children}
-      </motion.li>
+      </li>
     </>
   );
 }

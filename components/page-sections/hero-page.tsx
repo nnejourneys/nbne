@@ -21,6 +21,8 @@ export default function HeroPage() {
         width={1920}
         height={1280}
         priority
+        quality={95}
+        sizes="100vw"
       />
 
       <div className="absolute top-0 left-0 w-full h-[60vh] bg-black/20" />

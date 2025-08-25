@@ -17,9 +17,9 @@ interface FooterMenuProps {
 export default function FooterMenu({ footermenu }: FooterMenuProps) {
   return ( 
       <div className="basis-1/2 md:basis-1/6">
-        <h6 className="font-bold mb-4 text-foreground">
+        <h3 className="font-bold mb-4 text-foreground">
           {footermenu.title}
-        </h6>
+        </h3>
         <ul className="ps-0">
           {footermenu.items.map((item, index) => (
             <li key={index} className="-ms-3 group max-w-fit">

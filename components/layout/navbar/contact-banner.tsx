@@ -6,7 +6,7 @@ import { Button } from "../../ui/button";
 export default function ContactBanner() {
   return (
     <>
-      <div className="md:bg-secondary px-5">
+      <div className="bg-slate-800 px-5">
         <ul className=" flex flex-wrap justify-center md:justify-end">
           {Alertdata.contact.map((item, index) => (
             <li className="m-0" key={index}>

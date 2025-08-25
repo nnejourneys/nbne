@@ -19,9 +19,9 @@ export default function ToursSlider() {
 
   return (
     <Container width="nomargin" className="px-5 md:px-20">
-      <h4 className="font-bold text-3xl text-center mb-5">
+      <h2 className="font-bold text-3xl text-center mb-5">
         Some of our upcoming Departures
-      </h4>
+      </h2>
       <Carousel
         opts={{
           loop: true,

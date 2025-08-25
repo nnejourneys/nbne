@@ -18,6 +18,7 @@ export default function AboutAlt() {
     >
       <div className="">
         <VideoPlayer
+          key="hero-video"
           src="https://pub-3d943afeed9643318d31712e02ebf613.r2.dev/Active-Holidays-Northeast-India.mp4"
           poster="https://pub-3d943afeed9643318d31712e02ebf613.r2.dev/videoposter.jpg"
           className="z-0 object-cover object-center"

@@ -1,10 +1,41 @@
 "use client";
-import { useRef } from "react";
-import { useInView } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Slot } from "@radix-ui/react-slot";
 import { cn } from "@/lib/utils";
 import React from "react";
+
+// Custom hook to replace framer-motion useInView
+const useIntersectionObserver = (
+  ref: React.RefObject<Element | null>, 
+  options: IntersectionObserverInit & { once?: boolean } = {}
+) => {
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const { once, ...observerOptions } = options;
+    
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          if (once) {
+            observer.disconnect();
+          }
+        }
+      },
+      observerOptions
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, [ref, options]);
+
+  return isInView;
+};
 
 const containerVariants = cva(" ", {
   variants: {
@@ -53,22 +84,29 @@ const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
     ref
   ) => {
     const Comp = asChild ? Slot : "div";
-    const internalRef = useRef(null);
-    const isInView = useInView(internalRef, { once: true });
+    const internalRef = useRef<HTMLDivElement>(null);
+    const [mounted, setMounted] = useState(false);
+    const isInView = useIntersectionObserver(internalRef, { once: true });
+    
+    useEffect(() => {
+      setMounted(true);
+    }, []);
 
-    const content = animate ? (
+    const content = animate && mounted ? (
       <div
-        style={{
-          transform: isInView ? "none" : "translateY(200px)",
-          opacity: isInView ? 1 : 0,
-          transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
-        }}
+        className={`transition-all duration-700 delay-500 ease-container-animation ${
+          isInView 
+            ? 'translate-y-0 opacity-100' 
+            : 'translate-y-[200px] opacity-0'
+        }`}
         ref={ref}
       >
         {children}
       </div>
     ) : (
-      children
+      <div ref={ref}>
+        {children}
+      </div>
     );
 
     return (
