@@ -15,19 +15,21 @@ import { organizationSchema, websiteSchema } from "@/lib/schemas";
 import { GoogleTagManager } from '@next/third-parties/google'
 
 const montserrat = Montserrat({
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"], // Reduce font weights to decrease bundle size
+  style: ["normal"],
   subsets: ["latin"],
   variable: "--font-montserrat",
   display: "swap",
+  preload: true,
 });
 
 const open_sans = Open_Sans({
-  weight: ["300", "400", "500", "600", "700", "800"],
-  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"], // Reduce font weights to decrease bundle size
+  style: ["normal"],
   subsets: ["latin"],
   variable: "--font-open_sans",
   display: "swap",
+  preload: true,
 });
 
 export const metadata = {
@@ -45,6 +47,10 @@ export const metadata = {
   metadataBase: new URL(`${BASE_PATH}`),
   alternates: {
     canonical: "/",
+  },
+  other: {
+    // Critical resource hints to reduce network chain
+    'preconnect': 'https://pub-3d943afeed9643318d31712e02ebf613.r2.dev',
   },
   twitter: {
     card: "summary_large_image",
@@ -89,7 +95,18 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${montserrat.variable} ${open_sans.variable}`}
     >
-      <GoogleTagManager gtmId="GTM-XYZ" />
+      <head>
+        {/* Fonts are automatically optimized by Next.js */}
+        {/* Preconnect to external domains */}
+        <link rel="preconnect" href="https://pub-3d943afeed9643318d31712e02ebf613.r2.dev" />
+        <link rel="dns-prefetch" href="https://pub-3d943afeed9643318d31712e02ebf613.r2.dev" />
+        {/* Resource hints for better performance */}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="manifest" href="/manifest.json" />
+      </head>
+      {process.env.NEXT_PUBLIC_GTM_ID && (
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
+      )}
       <body>
         <ThemeProvider
           attribute="class"
@@ -107,7 +124,24 @@ export default function RootLayout({
               dangerouslySetInnerHTML={{
                 __html: JSON.stringify([organizationSchema, websiteSchema]),
               }}
-            /> 
+            />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
+                  if ('serviceWorker' in navigator) {
+                    window.addEventListener('load', function() {
+                      navigator.serviceWorker.register('/sw.js')
+                        .then(function(registration) {
+                          console.log('SW registered: ', registration);
+                        })
+                        .catch(function(registrationError) {
+                          console.log('SW registration failed: ', registrationError);
+                        });
+                    });
+                  }
+                `,
+              }}
+            />
           </TooltipProvider>
         </ThemeProvider>
       </body>
