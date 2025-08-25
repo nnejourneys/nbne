@@ -38,7 +38,7 @@ export async function sendContactEmail(
     // Send email using Resend
     const { error } = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL!,
-      to: [`${process.env.RESEND_FROM_EMAIL!}`, "mohansky@gmail.com"],
+      to: [`${process.env.RESEND_FROM_EMAIL!}`, "mohansky@gmail.com", "nnejourneys@gmail.com"],
       subject: `Contact Form: ${subject}`,
       react: ContactEmail({
         name: fname,
@@ -69,3 +69,4 @@ export async function sendContactEmail(
     };
   }
 }
+
