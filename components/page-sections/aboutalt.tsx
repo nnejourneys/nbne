@@ -1,10 +1,10 @@
 "use client";
-import Link from "next/link";
-import Aboutdata from "@/data/about.json";
-import { Heading } from "@/components/styledcomps/heading";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { P } from "../ui/p";
+// import Link from "next/link";
+// import Aboutdata from "@/data/about.json";
+// import { Heading } from "@/components/styledcomps/heading";
+// import { Button } from "@/components/ui/button";
+// import { Card, CardContent, CardHeader } from "@/components/ui/card";
+// import { P } from "../ui/p";
 import { Container } from "../styledcomps/container";
 // import R2Image from "../styledcomps/R2Image";
 import VideoPlayer from "../styledcomps/video";
@@ -23,7 +23,7 @@ export default function AboutAlt() {
           className="z-0 object-cover object-center"
         />
 
-        <div className="absolute top-1/2 right-0 -translate-y-1/2 z-10">
+        {/* <div className="absolute top-1/2 right-0 -translate-y-1/2 z-10">
           <div className="grid lg:grid-cols-6">
             <div className="md:col-end-7 md:col-span-3">
               <div>
@@ -47,9 +47,8 @@ export default function AboutAlt() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </Container>
   );
 }
-
