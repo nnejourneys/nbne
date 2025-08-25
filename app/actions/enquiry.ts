@@ -38,7 +38,7 @@ export async function sendEnquiryEmail(
     // Send email using Resend
     const { error } = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL!,
-      to: [`${process.env.RESEND_FROM_EMAIL!}`, "mohansky@gmail.com"],
+      to: [`${process.env.RESEND_FROM_EMAIL!}`, "mohansky@gmail.com", "nnejourneys@gmail.com"],
       subject: title ? `Enquiry: ${title}` : "New Enquiry",
       react: EnquiryEmail({
         title,
@@ -68,4 +68,5 @@ export async function sendEnquiryEmail(
       error: "An unexpected error occurred. Please try again later.",
     };
   }
+
 }
