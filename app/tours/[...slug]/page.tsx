@@ -1,3 +1,4 @@
+// app/tours/[...slug]/page.tsx
 import React from "react";
 import { notFound } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -12,12 +13,12 @@ import TouraccoList from "@/components/tours/tours-page/acco-list";
 import Othertours from "@/components/tours/tours-page/othertours";
 import TourOverviewItem from "@/components/tours/tours-page/overview-item";
 import FAQ from "@/components/tours/tours-page/faq";
-// import Gallery from "@/components/tours/tours-page/gallery";
 import EnquiryForm from "@/components/tours/tours-page/enquiry-form";
 import { MDXContent } from "@/components/tours/tours-page/mdx-components";
 import { Tours, tours } from "@/.velite";
-import { BASE_PATH, SITE_TITLE } from "@/lib/constants"; 
+import { BASE_PATH, SITE_TITLE } from "@/lib/constants";
 import SwipeGallery from "@/components/tours/tours-page/photoswipe";
+import YouTubeVideo from "@/components/tours/tours-page/youtube-video";
 import { generateTourSchema, generateBreadcrumbSchema } from "@/lib/schemas";
 
 type Props = {
@@ -79,7 +80,7 @@ export default async function TourPage({ params }: Props) {
   const tourSchema = generateTourSchema({
     title: tour.title!,
     subtitle: tour.subtitle!,
-    slug: tour.slug, 
+    slug: tour.slug,
     days: tour.days || "6 days",
     cat: tour.cat,
     touricon: tour.touricon,
@@ -89,14 +90,14 @@ export default async function TourPage({ params }: Props) {
     highlights: tour.highlights,
     inclusions: tour.inclusions,
     exclusions: tour.exclusions,
-    overview: tour.overview
+    overview: tour.overview,
   });
 
   // ✅ Add breadcrumb schema with safe values
   const breadcrumbSchema = generateBreadcrumbSchema([
     { name: "Home", url: BASE_PATH },
     { name: "Tours", url: `${BASE_PATH}/tours` },
-    { name: tour.title || "Tour", url: `${BASE_PATH}/tours/${tour.slug}` }
+    { name: tour.title || "Tour", url: `${BASE_PATH}/tours/${tour.slug}` },
   ]);
 
   // ✅ Combine schemas for better SEO
@@ -153,6 +154,17 @@ export default async function TourPage({ params }: Props) {
                 </div>
               )}
             </div>
+
+            {tour.video && (
+              <div className="my-8">
+                <YouTubeVideo
+                  url={tour.video}
+                  title={`${tour.title} - Video`}
+                  poster={tour.image}
+                />
+              </div>
+            )}
+
             {tour.body && <MDXContent code={tour.body} />}
 
             <div className="grid lg:grid-cols-2 gap-4 mb-10">
@@ -216,10 +228,7 @@ export default async function TourPage({ params }: Props) {
                 {tour.faq ? <FAQ faq={tour.faq} /> : null}
               </div>
             </div>
-            {/* {tour.galleryimages && (
-              <Gallery galleryImages={tour.galleryimages} />
-            )} */}
-
+         
             {Array.isArray(tour.gallery) && tour.gallery.length > 0 && (
               <SwipeGallery
                 galleryID={`gallery-${tour.slug}`}
