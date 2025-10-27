@@ -4,7 +4,7 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/s
 import MenuItems from "@/data/menu.json";
 import {
   NavigationMenu,
-  NavigationMenuContent,
+  // NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
@@ -47,7 +47,7 @@ export default function HamburgerMenu() {
                             title={item.title}
                             className={navigationMenuTriggerStyle()}
                           >
-                            <SheetTrigger>{item.title}</SheetTrigger>
+                            <SheetTrigger className="uppercase">{item.title}</SheetTrigger>
                           </Link>
                         </NavigationMenuLink>
                       </NavigationMenuItem>
@@ -57,7 +57,7 @@ export default function HamburgerMenu() {
                     <NavigationMenuItem key={item.id} className="my-5">
                       <Accordion type="single" key={item.id} collapsible>
                         <AccordionItem value="item-1" className="border-b-0">
-                          <AccordionTrigger className="justify-center hover:no-underline">
+                          <AccordionTrigger className="justify-center hover:no-underline uppercase">
                             {item.title}
                           </AccordionTrigger>
                           <AccordionContent>
@@ -73,7 +73,7 @@ export default function HamburgerMenu() {
                           </AccordionContent>
                         </AccordionItem>
                       </Accordion>
-                      <NavigationMenuContent></NavigationMenuContent>
+                      {/* <NavigationMenuContent></NavigationMenuContent> */}
                     </NavigationMenuItem>
                   );
                 })}
@@ -92,27 +92,30 @@ const ListItem = React.forwardRef<
   React.ComponentPropsWithoutRef<"a"> & { href: string }
 >(({ className, title, children, href, ...props }, ref) => {
   return (
-    
+
       <NavigationMenuLink asChild>
-        <Link
-          href={href}
-          ref={ref}
-          className={cn(
-            "block w-full px-20 py-3 select-none space-y-1 rounded-md leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-            className
-          )}
-          title={title}
-          {...props}
-        >
-          <div className="text-sm w-44 font-medium leading-none text-center">
-            {title}
-          </div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-            {children}
-          </p>
-        </Link>
+        <SheetTrigger asChild>
+          <Link
+            href={href}
+            ref={ref}
+            className={cn(
+              "block w-full px-20 py-3 select-none space-y-1 rounded-md leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+              className
+            )}
+            title={title}
+            {...props}
+          >
+            <div className="text-sm w-44 font-medium leading-none text-center uppercase">
+              {title}
+            </div>
+
+            <p className="line-clamp-2 text-sm leading-snug text-muted-foreground uppercase ">
+              {children}
+            </p>
+          </Link>
+        </SheetTrigger>
       </NavigationMenuLink>
-     
+
   );
 });
 ListItem.displayName = "ListItem";
