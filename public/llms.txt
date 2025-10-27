@@ -1,0 +1,226 @@
+# North by Northeast Journeys - LLM Context File
+
+## Project Overview
+**Name:** North by Northeast Journeys (NBNE)
+**URL:** https://nnejourneys.com/
+**Type:** Travel & Tourism Website
+**Focus:** Adventure, nature, and culture tours in Northeast India
+**Tech Stack:** Next.js 16, React 19, TypeScript, Tailwind CSS, Velite CMS
+
+## Business Description
+North by Northeast Journeys specializes in adventure, nature, and culture tours across Northeast India, covering regions including:
+- Assam
+- Arunachal Pradesh
+- Meghalaya
+- Nagaland
+- Sikkim
+
+The company offers various tour types:
+- **Active Holidays:** Cycling, trekking, multi-activity, motorcycle tours
+- **Leisure Holidays:** Comfort tours, offbeat experiences, wildlife tours, road trips
+- **Cultural Tours:** Cultural immersion experiences in Arunachal Pradesh, Assam, and Nagaland
+- **Family Holidays:** Family-friendly tour packages
+- **Fixed Departures:** Scheduled group tours
+
+## Technical Architecture
+
+### Framework & Core Technologies
+- **Next.js 16** with App Router
+- **React 19** with TypeScript
+- **Tailwind CSS** for styling
+- **Velite** for content management (MDX-based CMS)
+- **Cloudflare R2** for image storage and CDN
+- **Google Tag Manager** for analytics
+- **Service Worker** for PWA functionality
+
+### Project Structure
+```
+/app                    # Next.js app directory (routes)
+  /aboutus             # About us pages
+  /actions             # Server actions (forms)
+  /contact             # Contact page
+  /posts               # Blog/insights
+  /tours               # Tour listings & detail pages
+    /[...slug]         # Dynamic tour detail pages
+    /departures        # Fixed departure tours
+/components            # React components
+  /emails              # Email templates (React Email)
+  /layout              # Header, footer, navigation
+    /navbar            # Top navigation & menu
+    /footer            # Footer components
+  /page-sections       # Homepage sections
+  /posts               # Blog components
+  /styledcomps         # Reusable styled components
+  /tours               # Tour-related components
+    /tours-list        # Tour listing components
+    /tours-page        # Tour detail page components
+  /ui                  # Shadcn UI components
+/content               # MDX content files
+  /posts               # Blog posts
+  /tours               # Tour content
+/lib                   # Utility functions & configs
+/public                # Static assets
+```
+
+### Key Features
+
+#### Content Management
+- **Velite CMS:** MDX-based content system for tours and blog posts
+- Dynamic content transformation with computed fields
+- R2 gallery integration with automatic image processing
+- Support for tour metadata: highlights, inclusions, exclusions, FAQs, itineraries
+
+#### Image Management
+- Cloudflare R2 bucket: `pub-3d943afeed9643318d31712e02ebf613.r2.dev`
+- Next.js Image optimization with AVIF/WebP formats
+- PhotoSwipe integration for image galleries
+- Lazy loading with blur placeholders
+
+#### UI Components
+- **Shadcn UI** components library
+- Custom components:
+  - `Container`: Animated container with scroll-based reveal
+  - `VideoPlayer`: Media-chrome based video player
+  - `YouTubeVideo`: YouTube embed with custom poster
+  - Tour cards, galleries, forms
+- **Framer Motion** for animations (replaced with CSS transitions in some areas)
+
+#### Forms & Actions
+- React Hook Form with Zod validation
+- Server actions for:
+  - Tour enquiry forms
+  - Contact forms
+- Resend integration for email notifications
+
+#### SEO & Schema
+- Comprehensive structured data:
+  - Organization schema
+  - Website schema
+  - Tour schema (TouristTrip)
+  - Breadcrumb schema
+- Dynamic metadata generation
+- XML sitemap
+- Robots.txt
+
+### Tour Data Structure
+Tours are stored as MDX files in `/content/tours/` with frontmatter:
+```yaml
+title: Tour title
+subtitle: Short description
+days: "X days"
+category: active|leisure|culture|departures
+tourtype: cycling|trekking|motorcycle|wildlife|etc.
+tags: [tag1, tag2]
+weight: number (for sorting)
+keywords: SEO keywords
+overview: [{label, icon, data}]
+highlights: [string array]
+inclusions: [string array]
+exclusions: [string array]
+faq: [{title, text}]
+galleryFolder: path/to/gallery
+video: YouTube URL
+```
+
+### Navigation Structure
+**Main Menu:**
+- Home
+- Tours (with category filters: Active, Leisure, Culture)
+- Departures
+- About Us (Team, Insights)
+- Contact
+
+**Tour Categories:**
+- Active: cycling, trekking, multi-activity, motorcycle, family
+- Leisure: comfort, offbeat, wildlife, roadtrip
+- Culture: arunachal, assam, nagaland
+
+### Styling & Theme
+- **Fonts:** Montserrat, Open Sans (Google Fonts)
+- **Theme:** Light/dark mode support via next-themes
+- **Colors:** Custom theme with Tailwind CSS
+- **Animations:**
+  - Scroll-based reveals using IntersectionObserver
+  - Slide-up animations on page sections
+  - Carousel/slider components with Embla
+
+### Performance Optimizations
+- Image optimization (AVIF, WebP)
+- Font subsetting and display:swap
+- Resource preconnecting to R2 CDN
+- Static generation for tours and posts
+- Turbopack for development
+- Service worker caching
+- Long-term caching headers (1 year)
+
+### Third-Party Integrations
+- **Media Chrome:** Video player controls
+- **PhotoSwipe:** Image lightbox gallery
+- **Embla Carousel:** Tour sliders
+- **Resend:** Transactional emails
+- **React Email:** Email templates
+- **Sonner:** Toast notifications
+
+## Common Development Tasks
+
+### Adding a New Tour
+1. Create MDX file in `/content/tours/`
+2. Add frontmatter with required fields
+3. Upload images to R2 bucket
+4. Add gallery folder path
+5. Write tour content in MDX
+6. Build to generate static pages
+
+### Modifying Tour Layout
+- Tour card: `/components/tours/tours-list/tour-card.tsx`
+- Tour detail page: `/app/tours/[...slug]/page.tsx`
+- Tour sections: `/components/tours/tours-page/`
+
+### Styling Changes
+- Global styles: `/app/globals.css`
+- Tailwind config: `/tailwind.config.ts`
+- Theme colors: In Tailwind config and CSS variables
+
+### Content Updates
+- Blog posts: `/content/posts/*.mdx`
+- Tours: `/content/tours/*.mdx`
+- Run `npm run content` to rebuild content
+
+## Important Notes
+- The site uses Cloudflare for hosting
+- Images must be uploaded to R2 bucket before referencing
+- All tours require proper schema markup for SEO
+- The staggered list animation was removed in favor of simple Container animations
+- MediaController components have suppressHydrationWarning due to SSR issues
+
+## Environment Variables
+- `NEXT_PUBLIC_GTM_ID`: Google Tag Manager ID
+- `NEXT_PUBLIC_R2_BUCKET_URL`: R2 bucket URL
+- Email service credentials for Resend
+
+## Build & Deployment
+```bash
+npm run dev          # Development with Turbopack
+npm run build        # Production build
+npm run start        # Start production server
+npm run content      # Rebuild Velite content
+```
+
+## Key Files for Modifications
+- Site config: `/lib/constants.ts`
+- Schemas: `/lib/schemas.ts`
+- Content config: `/velite.config.ts`
+- Next.js config: `/next.config.mjs`
+- Layout: `/app/layout.tsx`
+- Homepage: `/app/page.tsx`
+- Tours page: `/app/tours/page.tsx`
+
+## Content Strategy
+- Focus on Northeast India tourism
+- Emphasis on adventure, nature, and cultural experiences
+- Target audience: Adventure travelers, families, culture enthusiasts
+- SEO-optimized tour descriptions
+- Regular blog content about Northeast India travel
+
+---
+This file is intended to provide LLMs with comprehensive context about the North by Northeast Journeys website structure, technology stack, and development practices.
