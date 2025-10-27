@@ -31,11 +31,7 @@ export default function StaggeredList({
     <>
       <ul
         ref={listRef}
-        className={`grid md:grid-cols-2 gap-4 transition-all duration-1000 delay-500 ease-in-out ${
-          isVisible 
-            ? 'opacity-100 scale-100' 
-            : 'opacity-100 scale-50'
-        }`}
+        className="grid md:grid-cols-2 gap-4"
       >
         {children}
       </ul>

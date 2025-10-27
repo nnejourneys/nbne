@@ -100,6 +100,8 @@ export default function YouTubeVideo({
       <MediaController
         ref={videoRef}
         className="w-full rounded-lg overflow-hidden"
+        // @ts-ignore - suppress third-party library key warnings
+        key={`media-controller-${videoId}`}
       >
         <iframe
           slot="media"

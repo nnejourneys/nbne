@@ -21,7 +21,7 @@ export default function HeroPage() {
         width={1920}
         height={1280}
         priority
-        quality={95}
+        quality={85}
         sizes="100vw"
       />
 

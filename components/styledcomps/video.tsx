@@ -66,9 +66,11 @@ export default function VideoPlayer({
           />
         </div>
       )}
-      <MediaController 
+      <MediaController
         className="w-full h-full"
         suppressHydrationWarning={true}
+        // @ts-ignore - suppress third-party library key warnings
+        key="media-controller"
         {...props}
       >
         <video 

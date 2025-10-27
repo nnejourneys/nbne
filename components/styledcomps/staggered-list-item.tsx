@@ -3,8 +3,10 @@ import { useEffect, useRef, useState } from "react";
 
 export default function StaggeredListItem({
   children,
+  index = 0,
 }: {
   children: React.ReactNode;
+  index?: number;
 }) {
   const [isVisible, setIsVisible] = useState(false);
   const itemRef = useRef<HTMLLIElement>(null);
@@ -14,6 +16,7 @@ export default function StaggeredListItem({
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+          observer.disconnect();
         }
       },
       { threshold: 0.1 }
@@ -26,13 +29,18 @@ export default function StaggeredListItem({
     return () => observer.disconnect();
   }, []);
 
+  const staggerDelay = index * 150; // 150ms delay between each item
+
   return (
     <>
-      <li 
+      <li
         ref={itemRef}
-        className={`staggeritem flex transition-opacity duration-1000 ease-in-out ${
-          isVisible ? 'opacity-100' : 'opacity-10'
+        className={`staggeritem flex transition-all duration-700 ease-out ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
         }`}
+        style={{
+          transitionDelay: isVisible ? `${staggerDelay}ms` : '0ms'
+        }}
       >
         {children}
       </li>

@@ -1,5 +1,5 @@
-"use client"; 
-import Slides from "@/data/heroslider.json"; 
+"use client";
+import Slides from "@/data/heroslider.json";
 import {
   Carousel,
   CarouselContent,
@@ -10,6 +10,7 @@ import {
 import Link from "next/link";
 import { Button } from "../ui/button";
 import Autoplay from "embla-carousel-autoplay";
+import Fade from "embla-carousel-fade";
 import { Heading } from "../styledcomps/heading";
 import React from "react";
 import R2Image from "../styledcomps/R2Image";
@@ -23,6 +24,7 @@ export default function HeroMain() {
           loop: true,
         }}
         plugins={[
+          Fade(),
           Autoplay({
             delay: 5000,
           }),
@@ -38,7 +40,7 @@ export default function HeroMain() {
                   alt={item.title} 
                   fill
                   priority={item.load}
-                  quality={95}
+                  quality={85}
                   sizes="100vw"
                 />
                 <div className="absolute top-0 left-0 w-full h-[60vh] sm:h-[100vh] bg-black/20" />
