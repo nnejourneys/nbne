@@ -4,8 +4,6 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import HeroPage from "@/components/page-sections/hero-page";
 import TourCard from "@/components/tours/tours-list/tour-card";
-import StaggeredList from "@/components/styledcomps/staggered-list";
-import StaggeredListItem from "@/components/styledcomps/staggered-list-item";
 import { Heading } from "@/components/styledcomps/heading";
 import { Tours, tours } from "#site/content";
 import { Container } from "@/components/styledcomps/container";
@@ -189,7 +187,7 @@ export default async function TourHome(props: {
       />
       
       <HeroPage /> 
-      <Container className="mb-5 px-5 md:px-10 lg:px-20" width="marginy">
+      <Container className="mb-5 px-5 md:px-10 lg:px-20" width="marginy" animate>
         <Heading size="xl" variant="sectiontitle">
           Tours
         </Heading>
@@ -290,9 +288,9 @@ export default async function TourHome(props: {
         </div>
 
         <section className="mx-auto mt-20">
-          <StaggeredList>
+          <ul className="grid md:grid-cols-2 gap-4">
             {filteredData.map((tour: Tours, index) => (
-              <StaggeredListItem key={index}>
+              <li key={index} className="flex">
                 <TourCard
                   slugAsParams={tour.slugAsParams}
                   draft={tour.draft}
@@ -310,9 +308,9 @@ export default async function TourHome(props: {
                   body={tour.body}
                   gallery={tour.gallery}
                 />
-              </StaggeredListItem>
+              </li>
             ))}
-          </StaggeredList>
+          </ul>
         </section>
       </Container>
     </>

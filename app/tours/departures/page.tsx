@@ -1,7 +1,5 @@
 import HeroPage from "@/components/page-sections/hero-page";
 import { Heading } from "@/components/styledcomps/heading";
-import StaggeredList from "@/components/styledcomps/staggered-list";
-import StaggeredListItem from "@/components/styledcomps/staggered-list-item";
 import TourCard from "@/components/tours/tours-list/tour-card";
 import { Tours, tours } from "#site/content";
 import { Container } from "@/components/styledcomps/container";
@@ -25,9 +23,9 @@ export default function Departures() {
           Fixed Departures 2025{" "}
         </Heading>
         <section className="mx-auto">
-          <StaggeredList>
+          <ul className="grid md:grid-cols-2 gap-4">
             {departureTours.map((tour: Tours, index) => (
-              <StaggeredListItem key={index}>
+              <li key={index} className="flex">
                 <TourCard
                   draft={tour.draft}
                   slugAsParams={tour.slugAsParams}
@@ -45,9 +43,9 @@ export default function Departures() {
                   body={tour.body}
                   gallery={tour.gallery}
                 />
-              </StaggeredListItem>
+              </li>
             ))}
-          </StaggeredList>
+          </ul>
         </section>
       </Container>
     </>
