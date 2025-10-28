@@ -18,6 +18,15 @@ export async function sendContactEmail(
   formData: FormData
 ) {
   try {
+    // Honeypot check - if filled, reject silently
+    const website = formData.get("website");
+    if (website && website !== "") {
+      return {
+        success: false,
+        error: "Please check your form data and try again.",
+      };
+    }
+
     // Validate form data
     const validatedFields = contactSchema.safeParse({
       fname: formData.get("fname"),
