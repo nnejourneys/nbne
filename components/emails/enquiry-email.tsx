@@ -8,6 +8,7 @@ import {
   Section,
   Text,
   Hr,
+  Link,
 } from "@react-email/components";
 
 interface EnquiryEmailProps {
@@ -23,9 +24,9 @@ export const EnquiryEmail = ({
   email,
   message,
 }: EnquiryEmailProps) => {
-  const previewText = title 
-    ? `New enquiry about ${title} from ${name}` 
-    : `New enquiry from ${name}`;
+  const previewText = title
+    ? `Enquiry about ${title} from ${name}`
+    : `Enquiry from ${name}`;
 
   return (
     <Html>
@@ -34,9 +35,9 @@ export const EnquiryEmail = ({
       <Body style={main}>
         <Container style={container}>
           <Heading style={h1}>
-            {title ? `Enquiry: ${title}` : "New Enquiry"}
+            {title ? `Enquiry: ${title} from ${name}` : "New Enquiry"}
           </Heading>
-          
+
           <Section style={section}>
             <Text style={label}>From:</Text>
             <Text style={value}>{name}</Text>
@@ -62,9 +63,13 @@ export const EnquiryEmail = ({
           </Section>
 
           <Hr style={hr} />
-          
+
           <Text style={footer}>
-            This enquiry was sent through your website enquiry form.
+            This message was sent through your website enquiry form{" "}
+            <Link href="https://nnejourneys.com" target="_blank" style={link}>
+              https://nnejourneys.com
+            </Link>
+            .
           </Text>
         </Container>
       </Body>
@@ -124,6 +129,12 @@ const messageText = {
 const hr = {
   borderColor: "#e6ebf1",
   margin: "20px 0",
+};
+
+const link = {
+  color: "#2754C5",
+  fontSize: "14px",
+  textDecoration: "underline",
 };
 
 const footer = {

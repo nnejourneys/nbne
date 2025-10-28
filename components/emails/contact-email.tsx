@@ -8,6 +8,7 @@ import {
   Section,
   Text,
   Hr,
+  Link,
 } from "@react-email/components";
 
 interface ContactEmailProps {
@@ -26,11 +27,13 @@ export const ContactEmail = ({
   return (
     <Html>
       <Head />
-      <Preview>New contact form submission from {name}</Preview>
+      <Preview>
+        {name} - {subject}
+      </Preview>
       <Body style={main}>
         <Container style={container}>
-          <Heading style={h1}>New Contact Form Submission</Heading>
-          
+          <Heading style={h1}>{subject}</Heading>
+
           <Section style={section}>
             <Text style={label}>From:</Text>
             <Text style={value}>{name}</Text>
@@ -54,9 +57,12 @@ export const ContactEmail = ({
           </Section>
 
           <Hr style={hr} />
-          
+
           <Text style={footer}>
-            This message was sent through your website contact form.
+            This message was sent through your website {" "}
+          <Link href="https://nnejourneys.com" target="_blank" style={link}>
+            https://nnejourneys.com
+          </Link>.
           </Text>
         </Container>
       </Body>
@@ -118,9 +124,15 @@ const hr = {
   margin: "20px 0",
 };
 
+const link ={
+  color: '#2754C5',
+  fontSize: '14px',
+  textDecoration: 'underline',
+}
+
 const footer = {
   color: "#8898aa",
   fontSize: "12px",
-  lineHeight: "16px",
+  lineHeight: "14px",
   padding: "0 48px",
 };
