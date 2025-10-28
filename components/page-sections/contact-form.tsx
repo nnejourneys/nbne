@@ -33,6 +33,9 @@ const formSchema = z.object({
   message: z.string().min(5, {
     message: "Message must be at least 5 characters.",
   }),
+  website: z.string().max(0, {
+    message: "Bot detected",
+  }),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -50,6 +53,7 @@ export default function ContactForm() {
       email: "",
       subject: "",
       message: "",
+      website: "",
     },
   });
 
@@ -77,7 +81,8 @@ export default function ContactForm() {
     formData.append("email", data.email);
     formData.append("subject", data.subject);
     formData.append("message", data.message);
-    
+    formData.append("website", data.website);
+
     // Call the server action using startTransition
     startTransition(() => {
       formAction(formData);
@@ -92,6 +97,24 @@ export default function ContactForm() {
       </Heading>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleSubmit)} className="md:space-y-8">
+          {/* Honeypot field - hidden from users but visible to bots */}
+          <FormField
+            control={form.control}
+            name="website"
+            render={({ field }) => (
+              <FormItem className="absolute opacity-0 pointer-events-none h-0 overflow-hidden" aria-hidden="true" tabIndex={-1}>
+                <FormLabel>Website</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="Your website"
+                    {...field}
+                    autoComplete="off"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <div className="grid md:grid-cols-2 gap-2">
             <FormField
               control={form.control}
